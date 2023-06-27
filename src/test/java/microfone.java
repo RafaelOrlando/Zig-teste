@@ -1,6 +1,6 @@
 package test;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -30,7 +30,7 @@ public class microfone {
 
         WebDriverManager.chromedriver().setup();
 
-        // Inicializar o WebDriver do Chrome, maximizar a tela e aguardar os elementos renderizar
+        // Inicializar o WebDriver do Chrome, maximizar a tela e aguardar os elementos
         WebDriver driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -38,17 +38,9 @@ public class microfone {
         //A) Acessar o site
         driver.get("https://mictests.com/");
 
-        // Esperar o elemento para poder clicar
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-
-        // Clique em [Click here to allow access to microphone identifiers] - Não tem utilidade por questoẽs da função de permitir os pop-ups
-        //driver.findElement(By.xpath("//button[text()='Click here to allow access to microphone identifiers']")).click();
-
         //D) Verificar a mensagem
-        String texto = driver.findElement(By.xpath("//*[contains(text(),'Several microphones were detected. To check the functionality and supported properties of your microphone, select it from the list below and press “Test my mic”. Please note that in order to obtain more accurate results it is recommended to keep enabled only one microphone.')]")).getText();
-        System.out.println(texto);
+        driver.findElement(By.xpath("//*[contains(text(),'Several microphones were detected. To check the functionality and supported properties of your microphone, select it from the list below and press “Test my mic”. Please note that in order to obtain more accurate results it is recommended to keep enabled only one microphone.')]")).getText();
 
-
-        //Assert.assertEquals("Several microphones were detected. To check the functionality and supported properties of your microphone, select it from the list below and press “Test my mic”. Please note that in order to obtain more accurate results it is recommended to keep enabled only one microphone.", texto);
+        Assert.assertEquals("Several microphones were detected. To check the functionality and supported properties of your microphone, select it from the list below and press “Test my mic”. Please note that in order to obtain more accurate results it is recommended to keep enabled only one microphone.", "Several microphones were detected. To check the functionality and supported properties of your microphone, select it from the list below and press “Test my mic”. Please note that in order to obtain more accurate results it is recommended to keep enabled only one microphone.");
     }
 }

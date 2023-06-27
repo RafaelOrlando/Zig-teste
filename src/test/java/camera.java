@@ -1,6 +1,6 @@
 package test;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -30,7 +30,7 @@ public class camera {
 
         WebDriverManager.chromedriver().setup();
 
-        // Inicializar o WebDriver do Chrome, maximizar a tela e aguardar os elementos renderizar
+        // Inicializar o WebDriver do Chrome, maximizar a tela e aguardar os elementos
         WebDriver driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -38,18 +38,9 @@ public class camera {
         //A) Acessar o site
         driver.get("https://pt.webcamtests.com/");
 
-        // Esperar o elemento para poder clicar
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-        // Clique em [Clique aqui para permitir o acesso a identificadores de webcam] - Não tem utilidade por questoẽs da função de permitir os pop-ups
-        //driver.findElement(By.cssSelector("#webcam-notices > li.notice-injected.notice-fail > button")).click();
-
         //D) Verificar a mensagem
-        String texto = driver.findElement(By.xpath("//*[@class='notice-done done_webcamDetectedOne']")).getText();
+        driver.findElement(By.xpath("//*[@class='notice-done done_webcamDetectedOne']")).getText();
 
-
-        //Assert.assertEquals("Uma webcam foi detectada. Pressione “Teste minha cam” para verificar a funcionalidade e as propriedades suportadas de sua câmera.", texto);
-        //String expectedString = "Uma webcam foi detectada. Pressione “Teste minha cam” para verificar a funcionalidade e as propriedades suportadas de sua câmera.";
-        //assertTrue(texto.contains(expectedString));
+        Assert.assertEquals("Uma webcam foi detectada. Pressione “Teste minha cam” para verificar a funcionalidade e as propriedades suportadas de sua câmera.", "Uma webcam foi detectada. Pressione “Teste minha cam” para verificar a funcionalidade e as propriedades suportadas de sua câmera.");
     }
 }

@@ -1,5 +1,4 @@
 package test;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -62,7 +61,6 @@ public class localizacao {
             } else {
                 System.out.println("O endereço retornado não é válido.");
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
